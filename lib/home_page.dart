@@ -17,6 +17,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(),
         backgroundColor: Colors.white,
         bottomNavigationBar: NavigationBar(
           selectedIndex: 2,
@@ -39,22 +40,22 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
-        body: const Column(
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              height: 50,
-            ),
-            CustomSegmentedButton(),
-            Divider(),
-            SearchButton(),
-            TransactionCard()
-            // Expanded(
-            //     child: ListView.builder(
-            //   itemCount: 10,
-            //   itemBuilder: (context, index) {
-            //     return const Text('Hello');
-            //   },
-            // ))
+            const CustomSegmentedButton(),
+            const Divider(),
+            const SearchButton(),
+            Expanded(
+                child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ListView.builder(
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return const TransactionCard();
+                },
+              ),
+            ))
           ],
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
