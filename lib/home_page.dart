@@ -50,9 +50,11 @@ class _HomePageState extends State<HomePage> {
                 child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: ListView.builder(
-                itemCount: 10,
+                itemCount: transaction.length,
                 itemBuilder: (context, index) {
-                  return const TransactionCard();
+                  return TransactionCard(
+                    transaction: transaction[index],
+                  );
                 },
               ),
             ))
@@ -62,3 +64,36 @@ class _HomePageState extends State<HomePage> {
         floatingActionButton: const CustomFloatingButton());
   }
 }
+
+List<Transaction> transaction = [
+  Transaction(
+    name: 'Emmanuel Rockson',
+    phoneNumber: '1234567890',
+    imageUrl:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSh1DZpMsH7WfqiU7sB6Pky_rHEQAumb9Tg-A&s",
+    status: 'successful',
+    amount: 'GHS 50',
+    type: 'type',
+    description: 'Cool with your heart wai',
+  ),
+  Transaction(
+    name: 'Emmanuel Rockson',
+    phoneNumber: '1234567890',
+    imageUrl:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSh1DZpMsH7WfqiU7sB6Pky_rHEQAumb9Tg-A&s",
+    status: 'successful',
+    amount: 'GHS 50',
+    type: 'type',
+    description: 'Cool with your heart wai',
+  ),
+  Transaction(
+    name: 'Emmanuel Rockson',
+    phoneNumber: '1234567890',
+    imageUrl:
+        "https://citinewsroom.com/wp-content/uploads/2019/10/Absa-Logo1-1.png",
+    status: 'Failed',
+    amount: 'GHS 50',
+    type: 'type',
+    description: 'Cool with your heart wai',
+  )
+];

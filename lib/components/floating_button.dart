@@ -7,7 +7,7 @@ class CustomFloatingButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton.icon(
       style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.green[400],
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
@@ -18,11 +18,11 @@ class CustomFloatingButton extends StatelessWidget {
         'SEND NEW',
         style: TextStyle(color: Colors.white),
       ),
-      icon: const CircleAvatar(
+      icon: CircleAvatar(
         backgroundColor: Colors.white,
         child: Icon(
           Icons.add,
-          color: Colors.green,
+          color: Colors.green[400],
         ),
       ),
     );

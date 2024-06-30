@@ -1,3 +1,4 @@
+import 'package:demo_app/constant.dart';
 import 'package:flutter/material.dart';
 
 class SearchButton extends StatelessWidget {
@@ -26,9 +27,11 @@ class SearchButton extends StatelessWidget {
                       size: 30,
                     ),
                   ),
-                  fillColor: Colors.grey,
+                  filled: true,
+                  fillColor: const Color(0xFFE5E5E5),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide.none,
                   ),
                 ),
               ),
@@ -36,9 +39,11 @@ class SearchButton extends StatelessWidget {
             const SizedBox(
               width: 20,
             ),
-            const Icon(
-              Icons.filter_list,
-              size: 30,
+            const Align(
+              child: Icon(
+                Icons.menu_outlined,
+                size: 30,
+              ),
             )
           ],
         ),

@@ -3,8 +3,28 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+class Transaction {
+  final String name;
+  final String phoneNumber;
+  final String imageUrl;
+  final String status;
+  final String amount;
+  final String type;
+  final String description;
+
+  Transaction(
+      {required this.name,
+      required this.phoneNumber,
+      required this.imageUrl,
+      required this.status,
+      required this.amount,
+      required this.type,
+      required this.description});
+}
+
 class TransactionCard extends StatelessWidget {
-  const TransactionCard({super.key});
+  final Transaction transaction;
+  const TransactionCard({super.key, required this.transaction});
 
   @override
   Widget build(BuildContext context) {
@@ -27,45 +47,64 @@ class TransactionCard extends StatelessWidget {
               style: TextStyle(color: darkGrey),
             ),
             ListTile(
-              leading: const CircleAvatar(
+              contentPadding: const EdgeInsets.only(left: 0.0),
+              leading: CircleAvatar(
                   radius: 30,
-                  backgroundImage: NetworkImage(
-                      scale: 3.0,
-                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSh1DZpMsH7WfqiU7sB6Pky_rHEQAumb9Tg-A&s"),
-                  child: SizedBox()),
-              title: const Text('John Doe'),
-              subtitle: const Text('Yaw'),
+                  backgroundImage:
+                      NetworkImage(scale: 3.0, transaction.imageUrl),
+                  child: const SizedBox()),
+              title: Text(transaction.name),
+              subtitle: Text(transaction.phoneNumber),
               trailing: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
+                    width: 100,
+                    height: 23,
+                    padding: const EdgeInsets.only(left: 5),
                     decoration: BoxDecoration(
-                      color: Colors.green,
-                      borderRadius: BorderRadius.circular(10),
+                      color: transaction.status.toLowerCase() == 'failed'
+                          ? Colors.red.withOpacity(0.5)
+                          : Colors.green.withOpacity(0.3),
+                      borderRadius: BorderRadius.circular(12),
                     ),
-                    child: const Text('Success'),
+                    child: Center(
+                      child: Expanded(
+                          child: Center(
+                              child: Row(children: [
+                        transaction.status.toLowerCase() == 'failed'
+                            ? const Icon(
+                                Icons.close,
+                                color: Colors.red,
+                                size: 18,
+                              )
+                            : Icon(
+                                Icons.check_circle,
+                                color: Colors.green.withOpacity(0.5),
+                                size: 18,
+                              ),
+                        Text(transaction.status)
+                      ]))),
+                    ),
                   ),
                   const SizedBox(
                     height: 10,
                   ),
-                  const Text(
-                    'GHS 50',
-                    style: TextStyle(fontWeight: FontWeight.w800, fontSize: 16),
+                  Text(
+                    transaction.amount,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w800, fontSize: 16),
                   )
                 ],
               ),
             ),
+            const SizedBox(height: 10),
             const Divider(
               height: 5,
             ),
+            const SizedBox(height: 10),
             Row(
               children: [
-                // Icon(
-                //   Icons.check_circle,
-                //   color: Colors.green,
-                // ),
-                // Text('Success')
-
                 CircleAvatar(
                   backgroundColor: Colors.indigo.withOpacity(0.5),
                   child: const Icon(
